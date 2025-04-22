@@ -1,0 +1,1 @@
+# Design-an-IoT-Based-Fan-speed-control-circuit-using-Altium-software-and-generate-the-Gerber-file.
