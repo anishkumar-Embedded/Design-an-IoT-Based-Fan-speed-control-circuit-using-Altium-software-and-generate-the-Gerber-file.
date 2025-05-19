@@ -1,8 +1,8 @@
-# Design-an-IoT-Based-Fan-speed-control-circuit-using-Altium-software-and-generate-the-Gerber-file.
-# Exp 6: Design an IoT based fan speed control circuit using Altium software and generate the Gerber file.
+
+# Exp 6: Design an LED Sequencer circuit using Altium software and generate the Gerber file.
 
 # AIM:
-To design the schematic and PCB layout diagram of an IoT based fan speed control circuit using Altium software.
+To design the schematic and PCB layout diagram of an LED Sequencer circui circuit using Altium software.
 # EQUIPMENT REQUIRED:
 ●	Hardware: Personal Computer (PC)<br>
 ●	Software: Altium  <br>
@@ -37,12 +37,25 @@ Preview Gerber Files<br>
 	Zip all relevant files (Gerbers, NC Drill, ReadMe, Fab notes) and send to the manufacturer.<br>
 
 # THEORY:
-The project titled "IoT Based Smart Fan Control using ESP8266 and Blynk" demonstrates an innovative approach to home automation by enabling users to control the speed of a conventional fan over the internet. Unlike typical IoT projects that offer simple on/off control, this design incorporates a TRIAC-based circuit to adjust the fan's speed remotely. The system utilizes the ESP8266 Wi-Fi module for connectivity and leverages the Blynk mobile application to provide a user-friendly interface for control. The compact design of the circuit allows for easy installation, making it a practical solution for modernizing existing home appliances without extensive modifications.
-The hardware setup includes essential components such as the ESP8266 microcontroller, TRIAC for controlling AC power, opto-isolators for safety, and various resistors and capacitors to ensure stable operation. The circuit is designed to handle appliances up to 250 watts, making it suitable for standard ceiling fans. A buzzer is integrated into the system to provide audible feedback during operation, enhancing user interaction. The project also emphasizes safety and reliability, with components selected to handle the electrical demands of controlling AC-powered devices. The use of PCBWay for fabricating the circuit board ensures a professional and compact layout, contributing to the overall efficiency and aesthetics of the device.
-On the software side, the Blynk platform offers a customizable interface where users can adjust fan speed through virtual sliders or buttons on their smartphones. The ESP8266 communicates with the Blynk server over Wi-Fi, receiving commands and adjusting the fan's speed accordingly by modulating the TRIAC's firing angle. This integration of hardware and software showcases the potential of IoT in enhancing everyday appliances, providing convenience and energy efficiency. The project serves as an excellent example for enthusiasts and professionals interested in developing smart home solutions, illustrating the practical application of IoT technologies in improving comfort and control within residential environments.
-![image](https://github.com/user-attachments/assets/01406107-f087-4965-adae-bb917ac14355)
+
+555 Timer as Clock Pulse Generator<br>
+In the circuit, the 555 timer IC is configured in astable mode, which means it generates continuous square wave pulses without any external triggering. The resistors (R1 and R2) and the capacitor (C1) connected to the timer determine the timing frequency. These pulses appear at pin 3 of the 555 timer and serve as clock inputs for the next stage — the CD4017 counter. The frequency of blinking (how fast LEDs move from one to another) depends on the values of R1, R2, and C1.
+
+CD4017 Decade Counter for Sequential Switching<br>
+The output pulses from the 555 timer are connected to pin 14 (Clock) of the CD4017 decade counter. This IC has 10 output pins (Q0–Q9), each going HIGH one at a time in sequence for every clock pulse it receives. The RESET (pin 15) is grounded to allow full counting, and ENABLE (pin 13) is also grounded to ensure the counter functions without being disabled.
+
+LEDs Connected to CD4017 Outputs<br>
+Each of the 10 outputs (Q0 to Q9) is connected to an individual LED via a current-limiting resistor (R3 to R12). When an output pin goes HIGH, the corresponding LED turns ON. On the next clock pulse, the output shifts to the next pin, and the LED connected to that pin lights up. This creates a chasing LED effect, where only one LED is ON at a time, and it moves in a sequence from D1 to D10.
+
+Cyclic Repetition of Sequence<br>
+After reaching Q9 (D10), the CD4017 automatically resets back to Q0 (D1) on the next clock pulse, creating a continuous loop of sequential lighting. This cycle will keep repeating as long as the 555 timer continues to produce clock pulses.
+
+Power Supply and Grounding<br>
+The circuit is powered by a DC supply (typically 5V or 9V) connected at the VCC and GND lines. All ICs and components share a common ground to maintain correct operation.
 
 # CIRCUIT DIAGRAM:
+![image](https://github.com/user-attachments/assets/2cb084f1-22ea-4d4e-816d-eee72cd2918f)
+
  
 # EXPECTED OUTPUT:
 ## Schematic diagram:
